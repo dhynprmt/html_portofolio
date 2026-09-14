@@ -12,7 +12,6 @@ if (hamburger && navMenu) {
   });
 }
 
-
 // =========================
 // DARK MODE
 // =========================
@@ -20,26 +19,27 @@ if (hamburger && navMenu) {
 const darkToggle = document.querySelector("#dark-toggle");
 
 if (darkToggle) {
-
-  // Check saved theme
+  // check saved theme
   if (localStorage.theme === "dark") {
     document.documentElement.classList.add("dark");
     darkToggle.checked = true;
+  } else {
+    document.documentElement.classList.remove("dark");
+    darkToggle.checked = false;
   }
 
   darkToggle.addEventListener("click", function () {
-
     if (darkToggle.checked) {
+      // choose Dark Mode
       document.documentElement.classList.add("dark");
       localStorage.theme = "dark";
     } else {
+      // choose Light Mode
       document.documentElement.classList.remove("dark");
       localStorage.theme = "light";
     }
-
   });
 }
-
 
 // =========================
 // CLOSE MOBILE MENU
@@ -63,54 +63,9 @@ navLinks.forEach(function (link) {
 
 });
 
-
 // =========================
-// PORTFOLIO SLIDER
+// TYPING EFFECT
 // =========================
-
-const portfolioSlider = document.querySelector("#portfolio-slider");
-const portfolioPrev = document.querySelector("#portfolio-prev");
-const portfolioNext = document.querySelector("#portfolio-next");
-
-if (portfolioSlider && portfolioPrev && portfolioNext) {
-
-  function getSlideWidth() {
-    const firstSlide = portfolioSlider.children[0];
-
-    if (!firstSlide) {
-      return 0;
-    }
-
-    return firstSlide.offsetWidth;
-  }
-
-
-  // Next button
-  portfolioNext.addEventListener("click", function () {
-
-    const slideWidth = getSlideWidth();
-
-    portfolioSlider.scrollBy({
-      left: slideWidth,
-      behavior: "smooth"
-    });
-
-  });
-
-
-  // Previous button
-  portfolioPrev.addEventListener("click", function () {
-
-    const slideWidth = getSlideWidth();
-
-    portfolioSlider.scrollBy({
-      left: -slideWidth,
-      behavior: "smooth"
-    });
-
-  });
-
-}
 
 const heroDescription = document.querySelector("#hero-description");
 
@@ -133,7 +88,6 @@ if (heroDescription) {
 
       setTimeout(typeText, 15);
     } else {
-      // Setelah selesai mengetik, mulai blinking
       cursor.classList.add("blink");
     }
   }
